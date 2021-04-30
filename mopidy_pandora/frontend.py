@@ -566,7 +566,15 @@ class EventSequence:
             )
         else:
             copied_sequence = match_sequence.copy()
-            filtered_list = [e for e in self.events_seen if (len(copied_sequence) > 0 and e == copied_sequence[0] and copied_sequence.pop(0))]
+            filtered_list = [
+                e
+                for e in self.events_seen
+                if (
+                    len(copied_sequence) > 0
+                    and e == copied_sequence[0]
+                    and copied_sequence.pop(0)
+                )
+            ]
             ratio = EventSequence.match_sequence(filtered_list, match_sequence)
         if ratio < 1.0 and self.strict:
             return 0
